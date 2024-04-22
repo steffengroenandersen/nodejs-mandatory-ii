@@ -14,9 +14,12 @@ router.use(express.json());
   API ROUTES(?)
 
 */
-import authRouter from "./authRouter/authRouter.js";
-router.use(authRouter);
 
+import signupRouter from "./signupRouter/signupRouter.js"
+router.use(signupRouter);
+
+import loginRouter from "./loginRouter/loginRouter.js"
+router.use(loginRouter);
 /* 
 
   CLIENT ROUTES

@@ -1,10 +1,9 @@
 import { Router } from "express";
-import authService from "../../service/AuthService/AuthService.js"
+import authService from "../../service/AuthService/AuthService.js";
 
 const router = Router();
 
 router.post("/api/signup", (req, res) => {
-
   // TODO: Add errorhandling
   const { email, password } = req.body;
 
@@ -13,10 +12,6 @@ router.post("/api/signup", (req, res) => {
   // send response to user
 
   res.send({ data: response });
-});
-
-router.get("/api/login", (req, res) => {
-  res.send({ data: "Login" });
 });
 
 export default router;
