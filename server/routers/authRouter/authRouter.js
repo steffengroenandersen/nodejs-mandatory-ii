@@ -1,12 +1,22 @@
 import { Router } from "express";
+import authService from "../../service/AuthService/AuthService.js"
+
 const router = Router();
 
-router.get("/signup", (req, res) => {
-  res.send({data: "Signup"});
+router.post("/api/signup", (req, res) => {
+
+  // TODO: Add errorhandling
+  const { email, password } = req.body;
+
+  const response = authService.createUser(email, password);
+
+  // send response to user
+
+  res.send({ data: response });
 });
 
-router.get("/login", (req, res) => {
-  res.send({data: "Login"});
+router.get("/api/login", (req, res) => {
+  res.send({ data: "Login" });
 });
 
 export default router;

@@ -1,7 +1,6 @@
 import express from "express";
 const app = express();
 
-
 import mainRouter from "./routers/mainRouter.js";
 app.use(mainRouter);
 
