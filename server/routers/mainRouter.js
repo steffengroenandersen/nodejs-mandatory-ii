@@ -8,4 +8,6 @@ router.get("/", (req, res) => {
 import authRouter from "./authRouter/authRouter.js";
 router.use(authRouter);
 
+
+
 export default router;
