@@ -1,10 +1,9 @@
-import userModel from "../../database/User/userModel.js"
-
+import userRepository from "../../repository/userRepository/userRepository.js";
 
 function createUser(email, password) {
   console.log("createUser()");
 
-  userModel.addUser({email, password});
+  userRepository.addUser(email, password);
 
   return "User succesfully created!";
 }
