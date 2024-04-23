@@ -9,6 +9,13 @@ const router = Router();
 */
 router.use(express.json());
 
+import path from "path";
+router.use(express.static(path.resolve("../../client/dist")));
+
+
+import session from "./middleware/session/session.js"
+router.use(session);
+
 /* 
 
   API ROUTES(?)

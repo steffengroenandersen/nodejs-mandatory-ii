@@ -6,7 +6,8 @@ const router = Router();
 router.post("/api/signup", (req, res) => {
   // TODO: Add errorhandling
   const { email, password } = req.body;
-
+  req.session.userEmail = email;
+  
   const response = authService.createUser(email, password);
 
   // send response to user
