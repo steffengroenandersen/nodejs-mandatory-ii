@@ -1,4 +1,5 @@
 import { Router } from "express";
+import authService from "../service/authService/authService.js";
 
 const router = Router();
 
@@ -9,17 +10,13 @@ router.get("/api/users", (req, res) => {
 router.post("/api/users", (req, res) => {
   const { email, password, confirmedPassword } = req.body;
 
-  const signupRequest = {
-    email: email,
-    password: password,
-    confirmedPassword: confirmedPassword,
+  const response = authService.createUser(email, password, confirmedPassword);
+
+  if (response === "Password and confirm password do not match") {
+    return res.status(400).send({ data: response });
   }
 
-  console.log(signupRequest);
-
-  
-
-  res.send({ data: signupRequest });
+  return res.send({ data: response });
 });
 
 export default router;

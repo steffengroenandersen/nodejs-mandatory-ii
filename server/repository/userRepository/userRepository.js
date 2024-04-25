@@ -1,12 +1,22 @@
 /* 
 
-  BELOW SIMULATES THE DATABASE
+  Below simulates the database
 
 */
 
-import bcrypt, { hash } from "bcrypt";
+const users = [
+  {
+    email: "steffen@localhost.com",
+    password: "$2b$10$qDi/DE5/pidMf0.oWWrDlut2/9FgnW.MWdgdePQhgEJQX15uBciZC",
+  },
+];
 
-const users = [{ email: "steffen@localhost.com", password: "$2b$10$qDi/DE5/pidMf0.oWWrDlut2/9FgnW.MWdgdePQhgEJQX15uBciZC" }];
+/*
+
+  Repository methods
+
+*/
+import bcrypt, { hash } from "bcrypt";
 
 async function addUser(email, password) {
   console.log("addUser()");
@@ -14,9 +24,8 @@ async function addUser(email, password) {
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  users.push({email: email, password: hashedPassword});
+  users.push({ email: email, password: hashedPassword });
   console.log(users);
-
 }
 
 export default {

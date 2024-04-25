@@ -14,8 +14,7 @@
       password: password,
       confirmedPassword: confirmedPassword,
     };
-
-    await fetchPost($BASE_URL + "/api/signup", signupRequest);
+    await fetchPost($BASE_URL + "/api/users", signupRequest);
   }
 </script>
 
