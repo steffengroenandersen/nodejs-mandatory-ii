@@ -31,9 +31,11 @@ app.use(connectLivereload());
 //   })
 // );
 
-import usersRouter from "./routers/usersRouter.js"
+import usersRouter from "./routers/usersRouter.js";
 app.use(usersRouter);
 
+import loginRouter from "./routers/loginRouter.js";
+app.use(loginRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.resolve("../client/dist/index.html"));

@@ -7,7 +7,7 @@
 const users = [
   {
     email: "steffen@localhost.com",
-    password: "$2b$10$qDi/DE5/pidMf0.oWWrDlut2/9FgnW.MWdgdePQhgEJQX15uBciZC",
+    password: "$2b$10$mLJPrtHyZVL1nCMOUfILYeXpbZgkQh8t3NZ5x9RcFhjmEjacoX5R6",
   },
 ];
 
@@ -28,6 +28,12 @@ async function addUser(email, password) {
   console.log(users);
 }
 
+function getUser(email) {
+  const foundUser = users.find((email) => email === email);
+  return foundUser;
+}
+
 export default {
   addUser,
+  getUser,
 };
