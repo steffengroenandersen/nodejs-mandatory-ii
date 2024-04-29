@@ -11,7 +11,7 @@ const config = {
   plugins: [
     require('flowbite/plugin')
   ],
-  darkMode: 'class',
+  // darkMode: 'class',
   theme: {
     extend: {
       colors: {
