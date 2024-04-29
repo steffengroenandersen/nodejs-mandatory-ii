@@ -21,15 +21,15 @@ liveReloadServer.server.once("connection", () => {
 
 app.use(connectLivereload());
 
-// import session from "express-session";
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: { secure: false }, //Change to false!
-//   })
-// );
+import session from "express-session";
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  })
+);
 
 import usersRouter from "./routers/usersRouter.js";
 app.use(usersRouter);
