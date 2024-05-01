@@ -1,14 +1,21 @@
 <script>
   import { fetchPost } from "../../../util/api.js";
   import { BASE_URL } from "../../stores/generalStore.js";
+  import { user } from "../../stores/generalStore.js"
 
   let email;
   let password;
 
-  function login() {
-    console.log("login()");
+  async function login() {
+    
+    const status = await fetchPost($BASE_URL + "/api/login", {email, password});
 
-    fetchPost($BASE_URL + "/api/login", {email, password});
+    console.log(status.data.role);
+    
+
+    user.set({email: status.data.email, role: status.data.role});
+    console.log($user)
+    
   }
 </script>
 

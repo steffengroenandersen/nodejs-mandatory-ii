@@ -1,21 +1,4 @@
-/* 
-
-  Below simulates the database
-
-*/
-
-const users = [
-  {
-    email: "steffen@localhost.com",
-    password: "$2b$10$mLJPrtHyZVL1nCMOUfILYeXpbZgkQh8t3NZ5x9RcFhjmEjacoX5R6",
-  },
-];
-
-/*
-
-  Repository methods
-
-*/
+import db from "../../database/connection.js";
 import bcrypt, { hash } from "bcrypt";
 
 async function addUser(email, password) {
@@ -24,12 +7,14 @@ async function addUser(email, password) {
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-  users.push({ email: email, password: hashedPassword });
-  console.log(users);
+  await db.run(`INSERT INTO users (email, password) VALUES ('${email}', '${hashedPassword}')`);
 }
 
-function getUser(email) {
-  const foundUser = users.find((email) => email === email);
+async function getUser(email) {
+  console.log("getUser()");
+
+  const foundUser = await db.get(`SELECT * FROM users WHERE email = '${email}'`);
+
   return foundUser;
 }
 

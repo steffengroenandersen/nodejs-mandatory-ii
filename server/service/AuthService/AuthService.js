@@ -9,6 +9,7 @@ function createUser(email, password, confirmedPassword) {
     return "Password and confirm password do not match";
   }
 
+  console.log(password);
   userRepository.addUser(email, password);
 
   return "User succesfully created!";
@@ -17,13 +18,20 @@ function createUser(email, password, confirmedPassword) {
 async function loginUser(email, password) {
   console.log("loginUser()");
 
-  const foundUser = userRepository.getUser(email);
-  console.log(email);
-  console.log(password);
-  console.log(foundUser);
+  try {
+    const foundUser = await userRepository.getUser(email);
 
-  const isSame = await bcrypt.compare(password, foundUser.password);
-  console.log(isSame);
+    const isSame = await bcrypt.compare(password, foundUser.password);
+    console.log("Password match is: " + isSame);
+
+    if (isSame) {
+      return { isSame: true, email: foundUser.email, role: foundUser.role };
+    } else {
+      return { isSame: false };
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export default {
