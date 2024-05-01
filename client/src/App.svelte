@@ -3,8 +3,6 @@
   import { user } from "./stores/generalStore.js";
   import { onDestroy } from "svelte";
 
-
-
   import Home from "./pages/Home/Home.svelte";
   import Signup from "./pages/Signup/Signup.svelte";
   import Login from "./pages/Login/Login.svelte";
@@ -23,13 +21,7 @@
   onDestroy(() => {
     unsubscribe();
   });
-  console.log($user);
-
-
 </script>
-
-
-
 
 {#if currentUser === null}
   <!-- NOT LOGGED IN -->
@@ -46,8 +38,6 @@
       <Route path="/login"><Login /></Route>
     </div>
   </Router>
-
-
 {:else if currentUser.role === "admin"}
   <!-- LOGGED IN AS ADMIN -->
   <Router>

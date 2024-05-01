@@ -2,20 +2,16 @@
   import { fetchPost } from "../../../util/api.js";
   import { BASE_URL } from "../../stores/generalStore.js";
   import { user } from "../../stores/generalStore.js"
+  import { navigate } from "svelte-navigator";
+
 
   let email;
   let password;
 
   async function login() {
-    
     const status = await fetchPost($BASE_URL + "/api/login", {email, password});
-
-    console.log(status.data.role);
-    
-
-    user.set({email: status.data.email, role: status.data.role});
-    console.log($user)
-    
+    user.set({email: status.data.email, role: status.data.role}); 
+    navigate("/");   
   }
 </script>
 

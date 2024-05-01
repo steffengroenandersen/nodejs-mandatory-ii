@@ -12,7 +12,6 @@
   let confirmedPassword;
 
   async function signup() {
-    console.log("signup()");
 
     if (password !== confirmedPassword) {
       showToast = true;
@@ -25,7 +24,7 @@
       confirmedPassword: confirmedPassword,
     };
     await fetchPost($BASE_URL + "/api/users", signupRequest);
-    navigate("/");
+    navigate("/login");
   }
 
   let showToast = false;
