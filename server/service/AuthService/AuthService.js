@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import userRepository from "../../repository/userRepository/userRepository.js";
+import mailService from "./../mailService/mailService.js"
 
 function createUser(email, password, confirmedPassword) {
   console.log("createUser()");
@@ -10,7 +11,7 @@ function createUser(email, password, confirmedPassword) {
   }
 
   userRepository.addUser(email, password);
-
+  mailService.sendWelcomeEmail(email);
   return "User succesfully created!";
 }
 
