@@ -9,7 +9,6 @@ function createUser(email, password, confirmedPassword) {
     return "Password and confirm password do not match";
   }
 
-  console.log(password);
   userRepository.addUser(email, password);
 
   return "User succesfully created!";

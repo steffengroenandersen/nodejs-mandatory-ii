@@ -1,6 +1,11 @@
 <script>
   import { fetchPost } from "../../../util/api.js";
   import { BASE_URL } from "../../stores/generalStore.js";
+  import { navigate } from "svelte-navigator";
+
+
+  import { Toast } from "flowbite-svelte";
+  import { FireOutline } from "flowbite-svelte-icons";
 
   let email;
   let password;
@@ -9,13 +14,21 @@
   async function signup() {
     console.log("signup()");
 
+    if (password !== confirmedPassword) {
+      showToast = true;
+      return;
+    }
+
     const signupRequest = {
       email: email,
       password: password,
       confirmedPassword: confirmedPassword,
     };
     await fetchPost($BASE_URL + "/api/users", signupRequest);
+    navigate("/");
   }
+
+  let showToast = false;
 </script>
 
 <section class="bg-gray-50 dark:bg-gray-900">
@@ -112,5 +125,16 @@
         </form>
       </div>
     </div>
+    {#if showToast}
+      <div class="mt-4">
+        <Toast>
+          <FireOutline
+            slot="icon"
+            class="w-6 h-6 text-primary-500 bg-primary-100 dark:bg-primary-800 dark:text-primary-200"
+          />
+          Your password and confirmed password does not match. Try again.
+        </Toast>
+      </div>
+    {/if}
   </div>
 </section>

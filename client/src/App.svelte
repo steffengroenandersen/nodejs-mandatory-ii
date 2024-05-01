@@ -1,8 +1,8 @@
 <script>
-  // @ts-ignore
   import { Router, Link, Route } from "svelte-navigator";
   import { user } from "./stores/generalStore.js";
   import { onDestroy } from "svelte";
+
 
 
   import Home from "./pages/Home/Home.svelte";
@@ -16,16 +16,20 @@
     currentUser = value;
   });
 
-
-  function signout(){
+  function signout() {
     user.set(null);
   }
 
   onDestroy(() => {
     unsubscribe();
   });
-console.log($user)
+  console.log($user);
+
+
 </script>
+
+
+
 
 {#if currentUser === null}
   <!-- NOT LOGGED IN -->
@@ -42,6 +46,8 @@ console.log($user)
       <Route path="/login"><Login /></Route>
     </div>
   </Router>
+
+
 {:else if currentUser.role === "admin"}
   <!-- LOGGED IN AS ADMIN -->
   <Router>
@@ -56,7 +62,6 @@ console.log($user)
       <Route path="/admin"><Admin /></Route>
     </div>
   </Router>
-  
 {:else if currentUser.role === "user"}
   <!-- LOGGED IN AS USER -->
   <Router>
@@ -71,5 +76,4 @@ console.log($user)
       <Route path="/user"><User /></Route>
     </div>
   </Router>
-  
 {/if}
