@@ -16,8 +16,8 @@
 </script>
 
 <Router>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary mb-5">
+    <div class="container">
       <button
         class="navbar-toggler"
         type="button"
