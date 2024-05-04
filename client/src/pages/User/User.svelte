@@ -1,1 +1,3 @@
-<h1>User</h1>
+<h1>This is the User board</h1>
+
+<p>This is only accessible Users...</p>

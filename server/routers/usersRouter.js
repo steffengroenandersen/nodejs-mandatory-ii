@@ -1,7 +1,12 @@
 import { Router } from "express";
 import authService from "../service/authService/authService.js";
+import { adminAuth } from "./authMiddleware.js";
 
 const router = Router();
+
+router.get("/api/users", adminAuth, (req, res) => {
+  res.send({ data: "user data" });
+});
 
 router.post("/api/users", (req, res) => {
   const { email, password, confirmedPassword } = req.body;
