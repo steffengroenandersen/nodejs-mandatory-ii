@@ -12,7 +12,13 @@ async function getUser(email) {
   return foundUser;
 }
 
+async function getAllUsers() {
+  const users = await db.all(`SELECT email, role FROM users`);
+  return users;
+}
+
 export default {
   addUser,
   getUser,
+  getAllUsers,
 };

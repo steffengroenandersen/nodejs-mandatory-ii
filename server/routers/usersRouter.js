@@ -1,11 +1,14 @@
-import { Router } from "express";
+import userRepository from "../repository/userRepository/userRepository.js";
 import authService from "../service/authService/authService.js";
 import { adminAuth } from "./authMiddleware.js";
+import { Router } from "express";
 
 const router = Router();
 
-router.get("/api/users", adminAuth, (req, res) => {
-  res.send({ data: "user data" });
+router.get("/api/users", adminAuth, async (req, res) => {
+  const users = await userRepository.getAllUsers();
+
+  res.send({ data: users });
 });
 
 router.post("/api/users", (req, res) => {

@@ -12,7 +12,6 @@
     const status = await fetchPost($BASE_URL + "/api/login", { email, password });
     user.set({ email: status.data.email, role: status.data.role });
     if (status.data.email !== undefined) {
-      console.log("Success");
       navigate("/");
     } else {
       const toastLiveExample = document.getElementById("liveToast");
