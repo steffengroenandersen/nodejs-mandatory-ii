@@ -1,11 +1,18 @@
 <script>
-  import { Router, Link, Route } from "svelte-navigator";
+  import { Router, Link, Route, navigate } from "svelte-navigator";
+  import { user } from "../stores/generalStore.js";
+  import AdminRoute from "../../util/AdminRoute.svelte";
 
   import Home from "../pages/Home/Home.svelte";
   import Signup from "../pages/Signup/Signup.svelte";
   import Login from "../pages/Login/Login.svelte";
   import Admin from "../pages/Admin/Admin.svelte";
-  import User from "../pages/User/User.svelte"
+  import User from "../pages/User/User.svelte";
+
+  function handleLogout() {
+    $user = null;
+    navigate("/");
+  }
 </script>
 
 <Router>
@@ -27,19 +34,33 @@
           <li class="nav-item">
             <Link to="/" class="nav-link active">Home</Link>
           </li>
-          <li class="nav-item">
-            <Link to="/signup" class="nav-link active">Signup</Link>
-          </li>
-          <li class="nav-item">
-            <Link to="/login" class="nav-link active">Login</Link>
-          </li>
-          <li class="nav-item">
-            <Link to="/admin" class="nav-link active">Admin</Link>
-          </li>
-          <li class="nav-item">
-            <Link to="/user" class="nav-link active">User</Link>
-          </li>
 
+          {#if $user === null}
+            <li class="nav-item">
+              <Link to="/signup" class="nav-link active">Signup</Link>
+            </li>
+            <li class="nav-item">
+              <Link to="/login" class="nav-link active">Login</Link>
+            </li>
+          {/if}
+
+          {#if $user?.role === "admin"}
+            <li class="nav-item">
+              <Link to="/admin" class="nav-link active">Admin</Link>
+            </li>
+          {/if}
+
+          {#if $user?.role === "user"}
+            <li class="nav-item">
+              <Link to="/user" class="nav-link active">User</Link>
+            </li>
+          {/if}
+
+          {#if $user !== null}
+            <li class="nav-item">
+              <button on:click={handleLogout} type="button" class="btn btn-dark">Logout</button>
+            </li>
+          {/if}
         </ul>
       </div>
     </div>
@@ -48,7 +69,6 @@
   <Route path="/"><Home /></Route>
   <Route path="/signup"><Signup /></Route>
   <Route path="/login"><Login /></Route>
-  <Route path="/admin"><Admin /></Route>
+  <AdminRoute path="/admin"><Admin /></AdminRoute>
   <Route path="/user"><User /></Route>
-
 </Router>

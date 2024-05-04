@@ -11,7 +11,6 @@
   async function login() {
     const status = await fetchPost($BASE_URL + "/api/login", { email, password });
     user.set({ email: status.data.email, role: status.data.role });
-    console.log($user);
     if (status.data.email !== undefined) {
       console.log("Success");
       navigate("/");
